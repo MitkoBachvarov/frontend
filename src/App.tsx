@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar } from "./Navbar/Navbar";
+import { ProductList } from "./Products/Products";
+import { CreateProduct } from "./Products/CreateProduct";
+import { ShoppingList } from "./ShoppingLists/ShoppingList";
+import { CreateShoppingList } from "./ShoppingLists/CreateShoppingList";
+import { SingleShoppingList } from "./ShoppingLists/SingleShoppingList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = (): JSX.Element => (
+  <>
+    <Navbar />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ShoppingList />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="create" element={<CreateProduct />} />
+        <Route path="/shopping" element={<ShoppingList />} />
+        <Route path="/shopping/create" element={<CreateShoppingList />} />
+        <Route path="/shopping/:id" element={<SingleShoppingList />} />
+      </Routes>
+    </BrowserRouter>
+  </>
+);
 
 export default App;
